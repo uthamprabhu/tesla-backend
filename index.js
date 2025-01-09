@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 const connectDB = require('./config/db');
 const carsRoute = require('./routes/cars'); // Import car routes
 require('dotenv').config();
@@ -10,6 +11,8 @@ connectDB();
 
 // Middleware to parse JSON
 app.use(express.json());
+
+app.use(cors())
 
 // Use the cars routes
 app.use('/cars', carsRoute);
