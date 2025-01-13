@@ -20,17 +20,6 @@ app.use(cors({
     methods: ['GET', 'POST'],
     credentials: true
   }));
-  
-  const io = socketio(server, {
-    cors: {
-      origin: [
-        'http://localhost:3000',
-        'https://unsp-tesla.netlify.app',
-      ],
-      methods: ['GET', 'POST'],
-      credentials: true,
-    },
-  });
 
 // Use the cars routes
 app.use('/cars', carsRoute);
