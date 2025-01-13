@@ -12,15 +12,32 @@ connectDB();
 // Middleware to parse JSON
 app.use(express.json());
 
-app.use(cors())
+app.use(cors({
+    origin: [
+      'http://localhost:3000',
+      'https://unsp-tesla.netlify.app',
+    ],
+    methods: ['GET', 'POST'],
+    credentials: true
+  }));
+  
+  const io = socketio(server, {
+    cors: {
+      origin: [
+        'http://localhost:3000',
+        'https://unsp-tesla.netlify.app',
+      ],
+      methods: ['GET', 'POST'],
+      credentials: true,
+    },
+  });
 
 // Use the cars routes
 app.use('/cars', carsRoute);
 
 // Home route
 app.get('/', (req, res) => {
-    res.send('Hello world');
-    console.log('Hello world');
+    res.send('The server is running!');
 });
 
 // Start the server
