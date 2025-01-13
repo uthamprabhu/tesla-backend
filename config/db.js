@@ -1,10 +1,11 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
+require('dotenv').config()
 
-const MONGO_URI = 'mongodb+srv://utham:12345@teslacardataset.zjq3c.mongodb.net/teslaDB?retryWrites=true&w=majority'
+const uri = process.env.MONGO_URI
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(MONGO_URI);
+        await mongoose.connect(uri);
         console.log('MongoDB connected successfully!');
     } catch (err) {
         console.error('MongoDB connection error:', err.message);
